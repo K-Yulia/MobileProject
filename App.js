@@ -1,20 +1,25 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { useFonts } from "expo-font";
+import RegistrationScreen from "./screens/auth/RegistrationScreen";
+import LoginScreen from "./screens/auth/LoginScreen";
+import PostsScreen from "./screens/PostsScreen";
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Regular: require("./assets/fonts/Roboto-Regular.ttf"),
+    Medium: require("./assets/fonts/Roboto-Medium.ttf"),
+    Bold: require("./assets/fonts/Roboto-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open me one 123!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      {/* <LoginScreen /> */}
+      {/* <RegistrationScreen /> */}
+      <PostsScreen />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
