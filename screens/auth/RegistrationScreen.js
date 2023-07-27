@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const initialState = {
   login: "",
@@ -20,6 +21,8 @@ const initialState = {
 };
 
 export default function RegistrationScreen() {
+  const navigation = useNavigation();
+
   console.log(Platform.OS);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
@@ -117,7 +120,19 @@ export default function RegistrationScreen() {
               >
                 <Text style={styles.btnTitle}>Зареєстуватися</Text>
               </TouchableOpacity>
-              <Text style={styles.link}>Вже є акаунт? Увійти</Text>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={{
+                  marginTop: 16,
+                  alignSelf: "center",
+                }}
+                onPress={() => navigation.navigate("Login")}
+              >
+                <Text style={styles.link}>
+                  Вже є акаунт?
+                  <Text style={styles.link}> Увійти</Text>
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
@@ -205,7 +220,6 @@ const styles = StyleSheet.create({
   },
 
   link: {
-    marginTop: 16,
     color: "#1B4371",
     fontFamily: "Regular",
     fontSize: 16,

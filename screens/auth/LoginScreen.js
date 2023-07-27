@@ -13,12 +13,16 @@ import {
   Dimensions,
 } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 const initialState = {
   email: "",
   password: "",
 };
 
-export default function RegistrationScreen() {
+export default function LoginScreen() {
+  const navigation = useNavigation();
+
   console.log(Platform.OS);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
@@ -101,7 +105,19 @@ export default function RegistrationScreen() {
               >
                 <Text style={styles.btnTitle}>Увійти</Text>
               </TouchableOpacity>
-              <Text style={styles.link}>Немає акаунту? Зареєструватися</Text>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={{
+                  marginTop: 16,
+                  alignSelf: "center",
+                }}
+                onPress={() => navigation.navigate("Register")}
+              >
+                <Text style={styles.link}>
+                  Немає акаунту?
+                  <Text style={styles.link}> Зареєструватися</Text>
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
@@ -180,7 +196,6 @@ const styles = StyleSheet.create({
   },
 
   link: {
-    marginTop: 16,
     color: "#1B4371",
     fontFamily: "Regular",
     fontSize: 16,
