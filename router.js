@@ -11,6 +11,7 @@ import LoginScreen from "./screens/auth/LoginScreen";
 import PostsScreen from "./screens/mainScreens/PostsScreen";
 import CreateScreen from "./screens/mainScreens/CreatePostsScreen";
 import ProfileScreen from "./screens/mainScreens/ProfileScreen";
+import { View } from "react-native";
 
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
@@ -33,12 +34,11 @@ export const useRoute = (isAuth) => {
           name="Login"
           component={LoginScreen}
         />
-        {/* <AuthStack.Screen name="Home" component={Home} />  */}
       </AuthStack.Navigator>
     );
   }
   return (
-    <MainTab.Navigator tabBarOptions={{ showLabel: false }}>
+    <MainTab.Navigator screenOptions={{ tabBarShowLabel: false }}>
       <MainTab.Screen
         options={{
           tabBarIcon: ({ focused, color, size }) => (
@@ -50,12 +50,18 @@ export const useRoute = (isAuth) => {
             fontWeight: 500,
             lineHeight: 22,
             letterSpacing: -0.4,
-            textAlign: "center",
             fontSize: 17,
           },
+          headerTitleAlign: "center",
           headerTintColor: "#212121",
+
           headerRight: ({ focused, color, size }) => (
-            <Feather name="log-out" size={24} color={color} />
+            <Feather
+              name="log-out"
+              size={24}
+              color={color}
+              style={{ marginRight: 10 }}
+            />
           ),
         }}
         name="Posts"
@@ -64,7 +70,39 @@ export const useRoute = (isAuth) => {
       <MainTab.Screen
         options={{
           tabBarIcon: ({ focused, color, size }) => (
-            <Feather name="plus" size={size} color={color} />
+            <Feather
+              name="plus"
+              size={13}
+              color="#FFFFFF"
+              style={{
+                height: 40,
+                width: 70,
+                borderRadius: 20,
+                backgroundColor: "#FF6C00",
+                alignItems: "center",
+                textAlign: "center",
+                textAlignVertical: "center",
+              }}
+            />
+          ),
+          title: "Створити публікацію",
+          headerTitleStyle: {
+            fontFamily: "Medium",
+            fontWeight: 500,
+            lineHeight: 22,
+            letterSpacing: -0.4,
+            fontSize: 17,
+          },
+          headerTitleAlign: "center",
+          headerTintColor: "#212121",
+
+          headerLeft: ({ focused, color, size }) => (
+            <Feather
+              name="arrow-left"
+              size={24}
+              color={color}
+              style={{ marginLeft: 16 }}
+            />
           ),
         }}
         name="Create"
